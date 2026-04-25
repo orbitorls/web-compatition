@@ -11,30 +11,31 @@
   --accent-red-dark: #a91448;
   --accent-gold: #f5b301;
   --success-green: #12a650;
-  
+
   /* Background Colors */
-  --bg-primary: #f7f8fa;
+  --bg-primary: #f7f9fc;
   --bg-white: #FFFFFF;
-  --bg-gray: #E9E9E9;
+  --bg-gray: #eef2f7;
   --bg-soft: #f1f3fb;
-  --bg-light-blue: #F8FAFC;
-  
+  --bg-light-blue: #f8fafc;
+  --bg-light: #f7f8fc;
+
   /* Text Colors */
   --text-primary: #20232d;
   --text-secondary: #565d6d;
   --text-muted: #727784;
-  --text-icon-muted: #D1D5DB;  /* Social icons from SVG */
+  --text-icon-muted: #aeb7c6;
   --text-white: #FFFFFF;
-  
+
   /* Border Colors - exact from SVG */
   --border-color: #E2E8F0;
   --border-input: #bfc8da;
-  
+
   /* Feature Icon Colors */
   --icon-blue: #5392F9;
   --icon-pink: #FF567D;
   --icon-orange: #D47F00;
-  
+
   /* Spacing */
   --spacing-xs: 4px;
   --spacing-sm: 8px;
@@ -43,26 +44,67 @@
   --spacing-xl: 32px;
   --spacing-2xl: 48px;
   --spacing-3xl: 64px;
-  
+
   /* Border Radius */
   --radius-sm: 8px;
   --radius-md: 12px;
   --radius-lg: 16px;
   --radius-xl: 24px;
-  
+
   /* Shadows */
   --shadow-sm: 0 4px 18px rgba(20, 29, 49, 0.08);
   --shadow-md: 0 10px 30px rgba(20, 29, 49, 0.12);
   --shadow-lg: 0 18px 48px rgba(20, 29, 49, 0.16);
-  
+
   /* Typography - Distinctive pairing */
   --font-display: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-family: var(--font-body);
+  color-scheme: light;
+}
+
+.dark {
+  --primary-blue: #2f7de1;
+  --primary-blue-dark: #2567bd;
+  --accent-red: #f87171;
+  --accent-red-dark: #ef4444;
+  --accent-gold: #fbbf24;
+  --success-green: #4ade80;
+
+  /* Background Colors */
+  --bg-primary: #0f141d;
+  --bg-white: #171d29;
+  --bg-gray: #222b3b;
+  --bg-soft: #1c2432;
+  --bg-light-blue: #202a3a;
+  --bg-light: #111722;
+
+  /* Text Colors */
+  --text-primary: #f1f5f9;
+  --text-secondary: #bcc7d7;
+  --text-muted: #91a0b4;
+  --text-icon-muted: #91a0b4;
+  --text-white: #FFFFFF;
+
+  /* Border Colors */
+  --border-color: #334155;
+  --border-input: #475569;
+
+  /* Feature Icon Colors */
+  --icon-blue: #60a5fa;
+  --icon-pink: #f472b6;
+  --icon-orange: #fb923c;
+
+  /* Shadows */
+  --shadow-sm: 0 4px 18px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 18px 48px rgba(0, 0, 0, 0.5);
+  color-scheme: dark;
 }
 
 html {
   font-size: 16px;
+  overflow-x: hidden;
 }
 
 body {
@@ -72,11 +114,13 @@ body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
 #root {
   min-height: 100vh;
   width: 100%;
+  overflow-x: hidden;
 }
 
 /* Button Styles */
@@ -96,6 +140,7 @@ body {
   transition: all 0.2s ease;
   text-decoration: none;
   white-space: nowrap;
+  line-height: 1;
 }
 
 .btn-primary {
@@ -105,4 +150,15 @@ body {
 
 .btn-primary:hover {
   background: var(--primary-blue-dark);
+}
+
+.btn:focus-visible {
+  outline: 3px solid rgba(0, 94, 203, 0.28);
+  outline-offset: 3px;
+}
+
+.btn:disabled,
+.btn[aria-disabled="true"] {
+  cursor: not-allowed;
+  opacity: 0.65;
 }

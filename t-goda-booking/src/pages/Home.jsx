@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import DatePicker from 'react-datepicker';
@@ -11,29 +11,33 @@ const destinations = [
     city: 'Bangkok',
     country: 'Thailand',
     price: '$120',
+    count: '11,909',
     badge: 'TOP RATED',
-    image: 'https://images.unsplash.com/photo-1563492065599-3520f775eeed?w=600&q=80'
+    image: '/mock-assets/dest-bangkok.png'
   },
   {
     id: 2,
-    city: 'Tokyo',
-    country: 'Japan',
-    price: '$250',
-    image: 'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=600&q=80'
+    city: 'Phuket',
+    country: 'Thailand',
+    price: '$180',
+    count: '8,452',
+    image: '/mock-assets/deal-2.png'
   },
   {
     id: 3,
-    city: 'Paris',
-    country: 'France',
-    price: '$180',
-    image: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=600&q=80'
+    city: 'Chiang Mai',
+    country: 'Thailand',
+    price: '$95',
+    count: '5,566',
+    image: '/mock-assets/result-palms.png'
   },
   {
     id: 4,
-    city: 'London',
-    country: 'UK',
-    price: '$210',
-    image: 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=600&q=80'
+    city: 'Pattaya',
+    country: 'Thailand',
+    price: '$85',
+    count: '6,890',
+    image: '/mock-assets/deal-3.png'
   }
 ];
 
@@ -102,11 +106,15 @@ const CalendarIcon = () => (
     <path d="M7 3v4" />
     <path d="M17 3v4" />
     <path d="M4 8h16" />
-    <rect x="4" y="5" width="16" height="16" rx="2" />
-    <path d="M8 12h2" />
-    <path d="M12 12h2" />
-    <path d="M8 16h2" />
-    <path d="M12 16h2" />
+    <rect x="3" y="8" width="18" height="13" rx="2" />
+    <path d="M4 12h16" />
+  </svg>
+);
+
+const UserIcon = () => (
+  <svg viewBox="0 0 24 24" aria-hidden="true">
+    <circle cx="12" cy="8" r="5" />
+    <path d="M3 21v-2a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v2" />
   </svg>
 );
 
@@ -125,12 +133,57 @@ const TagArt = () => (
   </svg>
 );
 
+const destinationSuggestions = [
+  { name: 'Bali, Indonesia', count: '12,048', image: '/mock-assets/deal-1.png' },
+  { name: 'Bangkok, Thailand', count: '11,909', image: '/mock-assets/dest-bangkok.png' },
+  { name: 'Phuket, Thailand', count: '8,452', image: '/mock-assets/deal-2.png' },
+  { name: 'Tokyo, Japan', count: '10,018', image: '/mock-assets/dest-tokyo.png' },
+  { name: 'Seoul, South Korea', count: '9,245', image: '/mock-assets/result-azure.png' },
+  { name: 'Singapore', count: '7,193', image: '/mock-assets/result-lumina.png' },
+  { name: 'Chiang Mai, Thailand', count: '5,566', image: '/mock-assets/result-palms.png' },
+  { name: 'Kuala Lumpur, Malaysia', count: '6,890', image: '/mock-assets/deal-3.png' },
+];
+
 const Home = () => {
+  const [destination, setDestination] = useState('');
+  const [showDestDropdown, setShowDestDropdown] = useState(false);
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
+  const [adults, setAdults] = useState(2);
+  const [children, setChildren] = useState(0);
+  const [rooms, setRooms] = useState(1);
+  const [showGuestDropdown, setShowGuestDropdown] = useState(false);
+  const destRef = useRef(null);
+  const guestRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (destRef.current && !destRef.current.contains(e.target)) {
+        setShowDestDropdown(false);
+      }
+      if (guestRef.current && !guestRef.current.contains(e.target)) {
+        setShowGuestDropdown(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  const filteredDestinations = destinationSuggestions.filter((d) =>
+    d.name.toLowerCase().includes(destination.toLowerCase())
+  );
 
   const handleSearch = (event) => {
     event.preventDefault();
+    const searchData = {
+      destination: destination || 'Bali, Indonesia',
+      checkIn: startDate ? startDate.toISOString() : new Date('2024-10-12').toISOString(),
+      checkOut: endDate ? endDate.toISOString() : new Date('2024-10-19').toISOString(),
+      adults,
+      children,
+      rooms,
+    };
+    localStorage.setItem('searchData', JSON.stringify(searchData));
     window.location.href = '/search';
   };
 
@@ -143,11 +196,49 @@ const Home = () => {
             <h1 id="hero-title">Escape to Your Perfect Paradise</h1>
             <p>Unlock exclusive prices on over 2 million properties and flights across the globe.</p>
             <form className="home-search" onSubmit={handleSearch}>
-              <label className="home-search__field">
+              <div className="home-search__field dest-field" ref={destRef}>
                 <span className="sr-only">Destination</span>
                 <DestinationIcon />
-                <input type="text" placeholder="Where to next?" />
-              </label>
+                <input
+                  type="text"
+                  placeholder="Where to next?"
+                  value={destination}
+                  onChange={(e) => {
+                    setDestination(e.target.value);
+                    setShowDestDropdown(true);
+                  }}
+                  onFocus={() => setShowDestDropdown(true)}
+                  autoComplete="off"
+                />
+                {showDestDropdown && (
+                  <div className="dest-dropdown">
+                    <div className="dest-dropdown-header">
+                      <span>Popular Destinations</span>
+                    </div>
+                    {filteredDestinations.length === 0 ? (
+                      <div className="dest-no-results">No destinations found</div>
+                    ) : (
+                      filteredDestinations.map((d) => (
+                        <button
+                          type="button"
+                          key={d.name}
+                          className="dest-option"
+                          onClick={() => {
+                            setDestination(d.name);
+                            setShowDestDropdown(false);
+                          }}
+                        >
+                          <img src={d.image} alt={d.name} className="dest-option-img" />
+                          <div className="dest-option-info">
+                            <strong>{d.name}</strong>
+                            <span>{d.count} properties</span>
+                          </div>
+                        </button>
+                      ))
+                    )}
+                  </div>
+                )}
+              </div>
               <label className="home-search__field date-field">
                 <span className="sr-only">Date range</span>
                 <CalendarIcon />
@@ -160,11 +251,67 @@ const Home = () => {
                     setStartDate(start);
                     setEndDate(end);
                   }}
-                  placeholderText="Select dates"
+                  isClearable={false}
                   dateFormat="MMM d"
-                  className="date-picker-input"
+                  placeholderText="Oct 12 - Oct 19"
+                  className="home-search__date-picker"
                 />
               </label>
+              <div className="home-search__field guest-field" ref={guestRef}>
+                <span className="sr-only">Travelers</span>
+                <UserIcon />
+                <button
+                  type="button"
+                  className="guest-trigger"
+                  onClick={() => setShowGuestDropdown(!showGuestDropdown)}
+                >
+                  {adults} Adults{children > 0 ? `, ${children} Children` : ''}, {rooms} Room{rooms > 1 ? 's' : ''}
+                </button>
+                {showGuestDropdown && (
+                  <div className="guest-dropdown">
+                    <div className="guest-row">
+                      <div>
+                        <strong>Adults</strong>
+                        <span>Age 13+</span>
+                      </div>
+                      <div className="guest-counter">
+                        <button type="button" onClick={() => setAdults(Math.max(1, adults - 1))}>−</button>
+                        <span>{adults}</span>
+                        <button type="button" onClick={() => setAdults(adults + 1)}>+</button>
+                      </div>
+                    </div>
+                    <div className="guest-row">
+                      <div>
+                        <strong>Children</strong>
+                        <span>Age 0-12</span>
+                      </div>
+                      <div className="guest-counter">
+                        <button type="button" onClick={() => setChildren(Math.max(0, children - 1))}>−</button>
+                        <span>{children}</span>
+                        <button type="button" onClick={() => setChildren(children + 1)}>+</button>
+                      </div>
+                    </div>
+                    <div className="guest-row">
+                      <div>
+                        <strong>Rooms</strong>
+                        <span>Number of rooms</span>
+                      </div>
+                      <div className="guest-counter">
+                        <button type="button" onClick={() => setRooms(Math.max(1, rooms - 1))}>−</button>
+                        <span>{rooms}</span>
+                        <button type="button" onClick={() => setRooms(rooms + 1)}>+</button>
+                      </div>
+                    </div>
+                    <button
+                      type="button"
+                      className="guest-done-btn"
+                      onClick={() => setShowGuestDropdown(false)}
+                    >
+                      Done
+                    </button>
+                  </div>
+                )}
+              </div>
               <button type="submit" className="home-search__button">
                 <SearchIcon />
                 <span>Search</span>
@@ -206,6 +353,7 @@ const Home = () => {
                     {destination.badge && <span>{destination.badge}</span>}
                   </div>
                   <h3>{destination.city}, {destination.country}</h3>
+                  <p>{destination.count} properties</p>
                   <p>Starting from <strong>{destination.price}</strong></p>
                 </article>
               ))}
@@ -223,7 +371,7 @@ const Home = () => {
               </div>
             </div>
             <div className="summer-sale__image" aria-hidden="true">
-              <img src="https://images.unsplash.com/photo-1540541338287-41700207dee6?w=600&q=80" alt="" />
+              <img src="/mock-assets/offer-pool.png" alt="" />
             </div>
           </section>
 

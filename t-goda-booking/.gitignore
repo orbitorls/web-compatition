@@ -10,6 +10,11 @@ lerna-debug.log*
 node_modules
 dist
 .visual-check/
+.ui-audit/
+.ui-audit-final/
+.ui-audit-final2/
+.ui-audit-final3/
+.vite-audit.log
 dist-ssr
 *.local
 

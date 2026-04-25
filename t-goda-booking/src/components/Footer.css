@@ -3,6 +3,7 @@
   border-top: 1px solid var(--border-color);
   padding: 50px var(--spacing-lg) 80px;
   margin-top: 80px;
+  color: var(--text-primary);
 }
 
 .footer-content {
@@ -31,7 +32,14 @@
   font-weight: 800;
   color: var(--primary-blue);
   margin-bottom: var(--spacing-sm);
-  letter-spacing: -0.5px;
+  letter-spacing: 0;
+  line-height: 1;
+  display: inline-flex;
+  align-items: baseline;
+}
+
+.footer-logo-hyphen {
+  margin: 0 1px;
 }
 
 .footer-description {
@@ -79,16 +87,17 @@
 }
 
 .social-link {
-  width: 28px;
-  height: 28px;
+  width: 32px;
+  height: 32px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: var(--radius-sm);
   background: transparent;
-  color: var(--text-icon-muted);
+  color: var(--text-secondary);
   text-decoration: none;
   font-size: 16px;
+  font-weight: 700;
   transition: background-color 0.2s ease, color 0.2s ease;
 }
 
@@ -97,15 +106,49 @@
   color: var(--text-white);
 }
 
+.social-link:focus-visible,
+.footer-links a:focus-visible {
+  outline: 3px solid rgba(0, 94, 203, 0.28);
+  outline-offset: 3px;
+}
+
+.dark .footer {
+  background: var(--bg-gray);
+  border-top-color: var(--border-color);
+}
+
+.dark .footer-links a,
+.dark .footer-description,
+.dark .footer-copyright {
+  color: var(--text-secondary);
+}
+
+.dark .social-link {
+  color: var(--text-secondary);
+}
+
+.dark .social-link:hover {
+  background: var(--primary-blue);
+  color: var(--text-white);
+}
+
+.dark .footer-section h3 {
+  color: var(--text-primary);
+}
+
 @media (max-width: 768px) {
   .footer {
-    padding: var(--spacing-xl) var(--spacing-md) var(--spacing-md);
+    padding: var(--spacing-xl) var(--spacing-md) var(--spacing-xl);
     margin-top: var(--spacing-xl);
   }
   
   .footer-sections {
     grid-template-columns: 1fr 1fr;
     gap: var(--spacing-lg);
+  }
+
+  .footer-brand {
+    grid-column: 1 / -1;
   }
   
   .footer-bottom {
@@ -124,6 +167,10 @@
     grid-template-columns: 1fr;
     gap: var(--spacing-lg);
   }
+
+  .footer-brand {
+    grid-column: auto;
+  }
   
   .footer-section h3 {
     font-size: 16px;
@@ -131,5 +178,12 @@
   
   .footer-links a {
     font-size: 14px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .social-link,
+  .footer-links a {
+    transition: none;
   }
 }

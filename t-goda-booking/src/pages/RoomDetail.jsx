@@ -118,7 +118,7 @@ const RoomDetail = () => {
             <div className="hotel-summary">
               <div className="hotel-stars-row">
                 <span className="stars" aria-label="5 star hotel">★★★★★</span>
-                <span className="resort-badge">REORT</span>
+                <span className="resort-badge">RESORT</span>
               </div>
               <h1>Grand Azure Resort & Spa, Elounda</h1>
               <div className="hotel-address">

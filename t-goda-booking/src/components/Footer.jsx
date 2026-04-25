@@ -6,13 +6,15 @@ const Footer = () => {
       <div className="footer-content">
         <div className="footer-sections">
           <div className="footer-section footer-brand">
-            <div className="footer-logo">T-Goda</div>
+            <div className="footer-logo" aria-label="T-Goda">
+              <span>T</span><span className="footer-logo-hyphen">-</span><span>Goda</span>
+            </div>
             <p className="footer-description">Making world travel accessible, affordable, and delightful for everyone since 2024. Your journey starts here.</p>
             <p className="footer-copyright">© 2024 T-Goda Booking. All rights reserved.</p>
             <div className="social-links">
-              <a href="#" className="social-link">f</a>
-              <a href="#" className="social-link">◎</a>
-              <a href="#" className="social-link">t</a>
+              <a href="#" className="social-link" aria-label="T-Goda on Facebook">f</a>
+              <a href="#" className="social-link" aria-label="T-Goda on Instagram">◎</a>
+              <a href="#" className="social-link" aria-label="T-Goda on X">t</a>
             </div>
           </div>
           <div className="footer-section">

@@ -12,14 +12,14 @@
 
 .coming-soon-container {
   width: min(100% - 48px, 480px);
-  margin: 60px auto;
+  margin: 64px auto;
   text-align: center;
 }
 
 .coming-soon-box {
   background: var(--bg-white);
   border-radius: var(--radius-lg);
-  padding: 60px 40px;
+  padding: 64px 40px;
   box-shadow: var(--shadow-md);
 }
 
@@ -44,7 +44,7 @@
 }
 
 .coming-soon-box .btn {
-  padding: 14px 32px;
+  padding: 16px 32px;
   font-size: 16px;
 }
 
