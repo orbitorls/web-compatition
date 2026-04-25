@@ -5,28 +5,30 @@
 }
 
 :root {
-  /* Primary Colors */
-  --primary-blue: #005CBD;
-  --primary-blue-dark: #003D7A;
-  --accent-red: #B61B4A;
-  --accent-red-dark: #9A163E;
+  --primary-blue: #005ecb;
+  --primary-blue-dark: #004da8;
+  --accent-red: #c21855;
+  --accent-red-dark: #a91448;
+  --accent-gold: #f5b301;
+  --success-green: #12a650;
   
   /* Background Colors */
-  --bg-primary: #F8F9FA;
+  --bg-primary: #f7f8fa;
   --bg-white: #FFFFFF;
   --bg-gray: #E9E9E9;
+  --bg-soft: #f1f3fb;
   --bg-light-blue: #F8FAFC;
   
   /* Text Colors */
-  --text-primary: #1A1A1A;
-  --text-secondary: #6B7280;
+  --text-primary: #20232d;
+  --text-secondary: #565d6d;
   --text-muted: #727784;
   --text-icon-muted: #D1D5DB;  /* Social icons from SVG */
   --text-white: #FFFFFF;
   
   /* Border Colors - exact from SVG */
   --border-color: #E2E8F0;
-  --border-input: #6B7FC6;
+  --border-input: #bfc8da;
   
   /* Feature Icon Colors */
   --icon-blue: #5392F9;
@@ -49,13 +51,14 @@
   --radius-xl: 24px;
   
   /* Shadows */
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
-  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.12);
-  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.16);
+  --shadow-sm: 0 4px 18px rgba(20, 29, 49, 0.08);
+  --shadow-md: 0 10px 30px rgba(20, 29, 49, 0.12);
+  --shadow-lg: 0 18px 48px rgba(20, 29, 49, 0.16);
   
   /* Typography - Distinctive pairing */
-  --font-display: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-body: 'Source Sans 3', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-display: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-family: var(--font-body);
 }
 
 html {
@@ -73,6 +76,7 @@ body {
 
 #root {
   min-height: 100vh;
+  width: 100%;
 }
 
 /* Button Styles */

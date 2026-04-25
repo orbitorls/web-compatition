@@ -1,188 +1,242 @@
+import { useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 import './Home.css';
 
-const hotels = [
+const destinations = [
   {
     id: 1,
-    name: "Grand Plaza Hotel",
-    location: "Bangkok, Thailand",
-    rating: 5,
-    price: 2500,
-    image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=400&h=300&fit=crop"
+    city: 'Bangkok',
+    country: 'Thailand',
+    price: '$120',
+    badge: 'TOP RATED',
+    image: 'https://images.unsplash.com/photo-1563492065599-3520f775eeed?w=600&q=80'
   },
   {
     id: 2,
-    name: "Seaside Resort",
-    location: "Phuket, Thailand",
-    rating: 4,
-    price: 3200,
-    image: "https://images.unsplash.com/photo-1582719508461-905c673771fd?w=400&h=300&fit=crop"
+    city: 'Tokyo',
+    country: 'Japan',
+    price: '$250',
+    image: 'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=600&q=80'
   },
   {
     id: 3,
-    name: "Mountain View Lodge",
-    location: "Chiang Mai, Thailand",
-    rating: 4,
-    price: 1800,
-    image: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=400&h=300&fit=crop"
+    city: 'Paris',
+    country: 'France',
+    price: '$180',
+    image: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=600&q=80'
   },
   {
     id: 4,
-    name: "City Center Suites",
-    location: "Bangkok, Thailand",
-    rating: 5,
-    price: 4500,
-    image: "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=400&h=300&fit=crop"
+    city: 'London',
+    country: 'UK',
+    price: '$210',
+    image: 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=600&q=80'
   }
 ];
-
-const HotelIcon = () => (
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-    <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-    <polyline points="9 22 9 12 15 12 15 22"/>
-  </svg>
-);
-
-const PriceIcon = () => (
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-    <line x1="12" y1="1" x2="12" y2="23"/>
-    <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
-  </svg>
-);
-
-const PhoneIcon = () => (
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-    <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/>
-    <line x1="12" y1="18" x2="12" y2="18.01"/>
-  </svg>
-);
-
-const featureIcons = {
-  hotel: <HotelIcon />,
-  price: <PriceIcon />,
-  phone: <PhoneIcon />
-};
 
 const features = [
   {
     id: 1,
-    title: "Verified Hotels",
-    description: "All our hotels are carefully verified for quality and comfort",
-    iconColor: "#5392F9",
-    iconKey: "hotel"
+    title: 'Best Price Guarantee',
+    description: "Find a lower price? We'll match it and give you a voucher for your next trip.",
+    tone: 'blue',
+    icon: (
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M20 12.5 12.5 20a2.1 2.1 0 0 1-3 0L3 13.5V4h9.5L20 11.5a.7.7 0 0 1 0 1Z" />
+        <path d="M7.5 7.5h.01" />
+      </svg>
+    )
   },
   {
     id: 2,
-    title: "Best Price",
-    description: "We guarantee the best prices for your perfect stay",
-    iconColor: "#FF567D",
-    iconKey: "price"
+    title: '24/7 Global Support',
+    description: 'Our world-class support team is here to help you anywhere, anytime in 40+ languages.',
+    tone: 'pink',
+    icon: (
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M4 13a8 8 0 0 1 16 0" />
+        <path d="M4 13v3a2 2 0 0 0 2 2h1v-7H6a2 2 0 0 0-2 2Z" />
+        <path d="M20 13v3a2 2 0 0 1-2 2h-1v-7h1a2 2 0 0 1 2 2Z" />
+        <path d="M15 19a3 3 0 0 1-3 2h-1" />
+      </svg>
+    )
   },
   {
     id: 3,
-    title: "Easy Booking",
-    description: "Book your dream hotel in just a few simple steps",
-    iconColor: "#D47F00",
-    iconKey: "phone"
+    title: 'Flexible Booking',
+    description: 'Life happens. Most of our properties offer free cancellation for peace of mind.',
+    tone: 'gold',
+    icon: (
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M7 3v4" />
+        <path d="M17 3v4" />
+        <path d="M4 8h16" />
+        <path d="M5 5h14a1 1 0 0 1 1 1v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a1 1 0 0 1 1-1Z" />
+        <path d="M15 13h5" />
+        <path d="M17.5 10.5v5" />
+      </svg>
+    )
   }
 ];
 
+const SearchIcon = () => (
+  <svg viewBox="0 0 24 24" aria-hidden="true">
+    <circle cx="11" cy="11" r="7" />
+    <path d="m16.5 16.5 4 4" />
+  </svg>
+);
+
+const DestinationIcon = () => (
+  <svg viewBox="0 0 24 24" aria-hidden="true">
+    <circle cx="11" cy="11" r="7" />
+    <path d="m16.5 16.5 4 4" />
+    <path d="M8.5 8.5 14 10l1.5 5.5-4-2-3 3 2-4-2-4Z" />
+  </svg>
+);
+
+const CalendarIcon = () => (
+  <svg viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M7 3v4" />
+    <path d="M17 3v4" />
+    <path d="M4 8h16" />
+    <rect x="4" y="5" width="16" height="16" rx="2" />
+    <path d="M8 12h2" />
+    <path d="M12 12h2" />
+    <path d="M8 16h2" />
+    <path d="M12 16h2" />
+  </svg>
+);
+
+const MailIcon = () => (
+  <svg viewBox="0 0 24 24" aria-hidden="true">
+    <rect x="3" y="5" width="18" height="14" rx="2" />
+    <path d="m4 7 8 6 8-6" />
+  </svg>
+);
+
+const TagArt = () => (
+  <svg className="sale-tag-art" viewBox="0 0 260 260" aria-hidden="true">
+    <path d="M26 0h128l106 106v128a26 26 0 0 1-26 26H106L0 154V26A26 26 0 0 1 26 0Z" />
+    <circle cx="59" cy="58" r="18" />
+    <path d="M114 116c-20-20-54 2-40 29 8 16 42 39 50 47 8-8 42-31 50-47 14-27-20-49-40-29l-10 10-10-10Z" />
+  </svg>
+);
+
 const Home = () => {
-  const handleSearch = (e) => {
-    e.preventDefault();
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
+
+  const handleSearch = (event) => {
+    event.preventDefault();
     window.location.href = '/search';
   };
 
   return (
     <div className="home-page">
       <Header />
-      <main className="main-content">
-        <section className="hero">
-          <div className="hero-content">
-            <h1>Welcome to T-Goda</h1>
-            <p>Find your perfect stay with unbeatable prices</p>
-            <form className="search-form" onSubmit={handleSearch}>
-              <div className="form-group">
-                <label>Destination</label>
-                <input type="text" className="form-input" placeholder="Where to next?" />
-              </div>
-              <div className="form-group">
-                <label>Check-in</label>
-                <input type="date" className="form-input" />
-              </div>
-              <div className="form-group">
-                <label>Check-out</label>
-                <input type="date" className="form-input" />
-              </div>
-              <div className="form-group">
-                <label>Guests</label>
-                <select className="form-input">
-                  <option>1 Guest</option>
-                  <option>2 Guests</option>
-                  <option>3 Guests</option>
-                  <option>4+ Guests</option>
-                </select>
-              </div>
-              <div className="form-group-button">
-                <button type="submit" className="btn btn-primary">Search</button>
-              </div>
+      <main className="main-content home-main">
+        <section className="home-hero" aria-labelledby="hero-title">
+          <div className="home-hero__content">
+            <h1 id="hero-title">Escape to Your Perfect Paradise</h1>
+            <p>Unlock exclusive prices on over 2 million properties and flights across the globe.</p>
+            <form className="home-search" onSubmit={handleSearch}>
+              <label className="home-search__field">
+                <span className="sr-only">Destination</span>
+                <DestinationIcon />
+                <input type="text" placeholder="Where to next?" />
+              </label>
+              <label className="home-search__field date-field">
+                <span className="sr-only">Date range</span>
+                <CalendarIcon />
+                <DatePicker
+                  selectsRange={true}
+                  startDate={startDate}
+                  endDate={endDate}
+                  onChange={(update) => {
+                    const [start, end] = update;
+                    setStartDate(start);
+                    setEndDate(end);
+                  }}
+                  placeholderText="Select dates"
+                  dateFormat="MMM d"
+                  className="date-picker-input"
+                />
+              </label>
+              <button type="submit" className="home-search__button">
+                <SearchIcon />
+                <span>Search</span>
+              </button>
             </form>
           </div>
         </section>
 
-        <div className="page-container">
-          <section className="features-section">
-            <div className="section-header">
-              <h2 className="section-title">Why Choose Us</h2>
+        <div className="home-shell">
+          <section className="feature-grid" aria-label="T-Goda travel benefits">
+            {features.map((feature) => (
+              <article key={feature.id} className="feature-card">
+                <div className={`feature-card__icon feature-card__icon--${feature.tone}`}>{feature.icon}</div>
+                <h2>{feature.title}</h2>
+                <p>{feature.description}</p>
+              </article>
+            ))}
+          </section>
+
+          <section className="destinations" aria-labelledby="destinations-title">
+            <div className="section-heading">
+              <div>
+                <h2 id="destinations-title">Trending Destinations</h2>
+                <p>Handpicked favorites for your next adventure</p>
+              </div>
+              <a href="/search">View all</a>
             </div>
-            <div className="features-grid">
-              {features.map(feature => (
-                <div key={feature.id} className="feature-card" style={{'--icon-color': feature.iconColor}}>
-                  <div className="feature-icon-wrapper" style={{backgroundColor: feature.iconColor + '20', color: feature.iconColor}}>
-                    {featureIcons[feature.iconKey]}
+            <div className="destination-grid">
+              {destinations.map((destination) => (
+                <article
+                  key={destination.id}
+                  className="destination-card"
+                  onClick={() => {
+                    window.location.href = `/search?destination=${destination.city}`;
+                  }}
+                >
+                  <div className="destination-card__image">
+                    <img src={destination.image} alt={`${destination.city}, ${destination.country}`} />
+                    {destination.badge && <span>{destination.badge}</span>}
                   </div>
-                  <h3>{feature.title}</h3>
-                  <p>{feature.description}</p>
-                </div>
+                  <h3>{destination.city}, {destination.country}</h3>
+                  <p>Starting from <strong>{destination.price}</strong></p>
+                </article>
               ))}
             </div>
           </section>
 
-          <section className="destinations-section">
-            <div className="section-header">
-              <h2 className="section-title">Trending Destinations</h2>
-              <p className="section-subtitle">Explore our most popular destinations</p>
-            </div>
-            <div className="hotel-grid">
-            {hotels.map(hotel => (
-              <div key={hotel.id} className="hotel-card" onClick={() => window.location.href = `/room/${hotel.id}`}>
-                <img src={hotel.image} alt={hotel.name} className="hotel-image" />
-                <div className="hotel-card-content">
-                  <h3 className="hotel-name">{hotel.name}</h3>
-                  <p className="hotel-location">📍 {hotel.location}</p>
-                  <div className="hotel-rating">
-                    {Array(hotel.rating).fill(<span className="star">★</span>)}
-                  </div>
-                  <p className="hotel-price">฿{hotel.price.toLocaleString()} <span>/ night</span></p>
-                </div>
+          <section className="summer-sale" aria-labelledby="summer-sale-title">
+            <TagArt />
+            <div className="summer-sale__copy">
+              <h2 id="summer-sale-title">Summer Sales: Up to 40% Off!</h2>
+              <p>Exclusive member deals on flights and luxury hotels for your next summer getaway. Valid until Oct 31st.</p>
+              <div className="summer-sale__actions">
+                <a className="sale-button sale-button--primary" href="/search">Explore Deals</a>
+                <a className="sale-button sale-button--outline" href="/signup">Join Club T-Goda</a>
               </div>
-            ))}
+            </div>
+            <div className="summer-sale__image" aria-hidden="true">
+              <img src="https://images.unsplash.com/photo-1540541338287-41700207dee6?w=600&q=80" alt="" />
             </div>
           </section>
 
-          <section className="special-offer">
-            <div className="offer-content">
-              <div className="offer-text">
-                <h2>Special Offer</h2>
-                <p>Get 40% off on your first booking! Use code: FIRST20</p>
-                <button className="btn offer-btn">Book Now</button>
-              </div>
-              <div className="offer-badge">
-                <p className="offer-percent">40%</p>
-                <p className="offer-label">OFF</p>
-              </div>
-            </div>
+          <section className="newsletter" aria-labelledby="newsletter-title">
+            <div className="newsletter__icon"><MailIcon /></div>
+            <h2 id="newsletter-title">Get Travel Deals Directly</h2>
+            <p>Subscribe to our newsletter and get early access to hidden gems and seasonal discounts. No spam, only adventure.</p>
+            <form className="newsletter__form">
+              <label className="sr-only" htmlFor="newsletter-email">Email address</label>
+              <input id="newsletter-email" type="email" placeholder="Your email address" />
+              <button type="submit">Subscribe Now</button>
+            </form>
+            <small>By subscribing, you agree to our Terms of Service and Privacy Policy.</small>
           </section>
         </div>
       </main>

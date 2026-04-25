@@ -1,8 +1,8 @@
 .footer {
   background: var(--bg-light-blue);
   border-top: 1px solid var(--border-color);
-  padding: var(--spacing-2xl) var(--spacing-lg) var(--spacing-lg);
-  margin-top: var(--spacing-3xl);
+  padding: 50px var(--spacing-lg) 80px;
+  margin-top: 80px;
 }
 
 .footer-content {
@@ -12,9 +12,9 @@
 
 .footer-sections {
   display: grid;
-  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  grid-template-columns: 2.2fr 0.7fr 0.7fr 0.7fr;
   gap: var(--spacing-2xl);
-  margin-bottom: var(--spacing-xl);
+  margin-bottom: 0;
 }
 
 .footer-section h3 {
@@ -27,7 +27,7 @@
 
 .footer-logo {
   font-family: var(--font-display);
-  font-size: 28px;
+  font-size: 22px;
   font-weight: 800;
   color: var(--primary-blue);
   margin-bottom: var(--spacing-sm);
@@ -40,7 +40,7 @@
   font-size: 14px;
   line-height: 1.6;
   margin-bottom: var(--spacing-lg);
-  max-width: 280px;
+  max-width: 420px;
 }
 
 .footer-links {
@@ -65,20 +65,12 @@
   color: var(--primary-blue);
 }
 
-.footer-bottom {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-top: var(--spacing-lg);
-  border-top: 1px solid var(--border-color);
-}
-
 .footer-copyright {
   font-family: var(--font-body);
   color: var(--text-secondary);
   font-size: 14px;
   font-weight: 500;
-  margin: 0;
+  margin: 0 0 var(--spacing-lg);
 }
 
 .social-links {
@@ -87,13 +79,13 @@
 }
 
 .social-link {
-  width: 36px;
-  height: 36px;
+  width: 28px;
+  height: 28px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: var(--radius-sm);
-  background: var(--bg-gray);
+  background: transparent;
   color: var(--text-icon-muted);
   text-decoration: none;
   font-size: 16px;

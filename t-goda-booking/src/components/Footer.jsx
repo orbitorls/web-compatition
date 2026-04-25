@@ -7,10 +7,11 @@ const Footer = () => {
         <div className="footer-sections">
           <div className="footer-section footer-brand">
             <div className="footer-logo">T-Goda</div>
-            <p className="footer-description">Find your perfect stay with unbeatable prices worldwide.</p>
+            <p className="footer-description">Making world travel accessible, affordable, and delightful for everyone since 2024. Your journey starts here.</p>
+            <p className="footer-copyright">© 2024 T-Goda Booking. All rights reserved.</p>
             <div className="social-links">
               <a href="#" className="social-link">f</a>
-              <a href="#" className="social-link">in</a>
+              <a href="#" className="social-link">◎</a>
               <a href="#" className="social-link">t</a>
             </div>
           </div>
@@ -19,15 +20,13 @@ const Footer = () => {
             <ul className="footer-links">
               <li><a href="#">About Us</a></li>
               <li><a href="#">Careers</a></li>
-              <li><a href="#">Press</a></li>
             </ul>
           </div>
           <div className="footer-section">
             <h3>Support</h3>
             <ul className="footer-links">
-              <li><a href="#">Help Center</a></li>
-              <li><a href="#">Safety</a></li>
-              <li><a href="#">Contact Us</a></li>
+              <li><a href="#">Support</a></li>
+              <li><a href="#">Mobile App</a></li>
             </ul>
           </div>
           <div className="footer-section">
@@ -35,12 +34,8 @@ const Footer = () => {
             <ul className="footer-links">
               <li><a href="#">Privacy Policy</a></li>
               <li><a href="#">Terms of Service</a></li>
-              <li><a href="#">Cookie Policy</a></li>
             </ul>
           </div>
-        </div>
-        <div className="footer-bottom">
-          <p className="footer-copyright">© 2024 T-Goda. All rights reserved.</p>
         </div>
       </div>
     </footer>
