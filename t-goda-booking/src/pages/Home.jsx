@@ -37,27 +37,54 @@ const hotels = [
   }
 ];
 
+const HotelIcon = () => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+    <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+    <polyline points="9 22 9 12 15 12 15 22"/>
+  </svg>
+);
+
+const PriceIcon = () => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+    <line x1="12" y1="1" x2="12" y2="23"/>
+    <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+  </svg>
+);
+
+const PhoneIcon = () => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+    <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/>
+    <line x1="12" y1="18" x2="12" y2="18.01"/>
+  </svg>
+);
+
+const featureIcons = {
+  hotel: <HotelIcon />,
+  price: <PriceIcon />,
+  phone: <PhoneIcon />
+};
+
 const features = [
   {
     id: 1,
-    title: "Best Prices Guaranteed",
-    description: "We offer competitive prices on over 2 million properties worldwide",
+    title: "Verified Hotels",
+    description: "All our hotels are carefully verified for quality and comfort",
     iconColor: "#5392F9",
-    icon: "💎"
+    iconKey: "hotel"
   },
   {
     id: 2,
-    title: "Secure Booking",
-    description: "Your payment and personal information are always protected",
+    title: "Best Price",
+    description: "We guarantee the best prices for your perfect stay",
     iconColor: "#FF567D",
-    icon: "🔒"
+    iconKey: "price"
   },
   {
     id: 3,
-    title: "24/7 Customer Support",
-    description: "Our team is available around the clock to assist you",
+    title: "Easy Booking",
+    description: "Book your dream hotel in just a few simple steps",
     iconColor: "#D47F00",
-    icon: "🎧"
+    iconKey: "phone"
   }
 ];
 
@@ -73,8 +100,8 @@ const Home = () => {
       <main className="main-content">
         <section className="hero">
           <div className="hero-content">
-            <h1>Escape to Your Perfect Paradise</h1>
-            <p>Unlock exclusive prices on over 2 million properties and flights across the globe.</p>
+            <h1>Welcome to T-Goda</h1>
+            <p>Find your perfect stay with unbeatable prices</p>
             <form className="search-form" onSubmit={handleSearch}>
               <div className="form-group">
                 <label>Destination</label>
@@ -97,8 +124,7 @@ const Home = () => {
                   <option>4+ Guests</option>
                 </select>
               </div>
-              <div className="form-group form-group-button">
-                <label>&nbsp;</label>
+              <div className="form-group-button">
                 <button type="submit" className="btn btn-primary">Search</button>
               </div>
             </form>
@@ -106,11 +132,29 @@ const Home = () => {
         </section>
 
         <div className="page-container">
-          <div className="section-header">
-            <h2 className="section-title">Trending Destinations</h2>
-            <p className="section-subtitle">Explore our most popular destinations</p>
-          </div>
-          <div className="hotel-grid">
+          <section className="features-section">
+            <div className="section-header">
+              <h2 className="section-title">Why Choose Us</h2>
+            </div>
+            <div className="features-grid">
+              {features.map(feature => (
+                <div key={feature.id} className="feature-card" style={{'--icon-color': feature.iconColor}}>
+                  <div className="feature-icon-wrapper" style={{backgroundColor: feature.iconColor + '20', color: feature.iconColor}}>
+                    {featureIcons[feature.iconKey]}
+                  </div>
+                  <h3>{feature.title}</h3>
+                  <p>{feature.description}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <section className="destinations-section">
+            <div className="section-header">
+              <h2 className="section-title">Trending Destinations</h2>
+              <p className="section-subtitle">Explore our most popular destinations</p>
+            </div>
+            <div className="hotel-grid">
             {hotels.map(hotel => (
               <div key={hotel.id} className="hotel-card" onClick={() => window.location.href = `/room/${hotel.id}`}>
                 <img src={hotel.image} alt={hotel.name} className="hotel-image" />
@@ -124,36 +168,20 @@ const Home = () => {
                 </div>
               </div>
             ))}
-          </div>
+            </div>
+          </section>
 
           <section className="special-offer">
             <div className="offer-content">
               <div className="offer-text">
                 <h2>Special Offer</h2>
-                <p>Get 20% off on your first booking! Use code: FIRST20</p>
+                <p>Get 40% off on your first booking! Use code: FIRST20</p>
                 <button className="btn offer-btn">Book Now</button>
               </div>
               <div className="offer-badge">
-                <p className="offer-percent">20%</p>
+                <p className="offer-percent">40%</p>
                 <p className="offer-label">OFF</p>
               </div>
-            </div>
-          </section>
-
-          <section className="features-section">
-            <div className="section-header">
-              <h2 className="section-title">Why Choose Us</h2>
-            </div>
-            <div className="features-grid">
-              {features.map(feature => (
-                <div key={feature.id} className="feature-card" style={{'--icon-color': feature.iconColor}}>
-                  <div className="feature-icon-wrapper" style={{ backgroundColor: `${feature.iconColor}20` }}>
-                    <span className="feature-icon">{feature.icon}</span>
-                  </div>
-                  <h3>{feature.title}</h3>
-                  <p>{feature.description}</p>
-                </div>
-              ))}
             </div>
           </section>
         </div>

@@ -12,17 +12,35 @@
 
 .footer-sections {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
   gap: var(--spacing-2xl);
   margin-bottom: var(--spacing-xl);
 }
 
 .footer-section h3 {
-  font-family: var(--font-family);
+  font-family: var(--font-display);
   font-size: 18px;
   font-weight: 700;
   margin-bottom: var(--spacing-md);
   color: var(--text-primary);
+}
+
+.footer-logo {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--primary-blue);
+  margin-bottom: var(--spacing-sm);
+  letter-spacing: -0.5px;
+}
+
+.footer-description {
+  font-family: var(--font-body);
+  color: var(--text-secondary);
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: var(--spacing-lg);
+  max-width: 280px;
 }
 
 .footer-links {
@@ -35,7 +53,7 @@
 }
 
 .footer-links a {
-  font-family: var(--font-family);
+  font-family: var(--font-body);
   text-decoration: none;
   color: var(--text-secondary);
   font-size: 15px;
@@ -56,7 +74,7 @@
 }
 
 .footer-copyright {
-  font-family: var(--font-family);
+  font-family: var(--font-body);
   color: var(--text-secondary);
   font-size: 14px;
   font-weight: 500;
@@ -76,16 +94,15 @@
   justify-content: center;
   border-radius: var(--radius-sm);
   background: var(--bg-gray);
-  color: var(--text-icon-muted);  /* Exact from SVG: #D1D5DB */
+  color: var(--text-icon-muted);
   text-decoration: none;
   font-size: 16px;
-  transition: all 0.2s ease;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 .social-link:hover {
   background: var(--primary-blue);
   color: var(--text-white);
-  transform: translateY(-2px);
 }
 
 @media (max-width: 768px) {

@@ -1,0 +1,63 @@
+- generic [ref=e2]:
+  - link [ref=e3] [cursor=pointer]:
+    - /url: /th/community-home
+  - img [ref=e5]
+  - generic [ref=e71]:
+    - link "อัปเดทข่าวสารรอบรั้วชาวนนทรี  community zone สำหรับนิสิต บุคลากร ศิษย์เก่า รวมถึงผู้สนใจทั่วไปที่ต้องการติดตามข้อมูลข่าวสาร กิจกรรมความเคลื่อนไหวต่าง ๆ ภายในมหาวิทยาลัย" [ref=e72] [cursor=pointer]:
+      - /url: /th/community-home
+      - generic [ref=e73]:
+        - generic [ref=e74]:
+          - text: อัปเดทข่าวสารรอบรั้วชาวนนทรี
+          - generic [ref=e75]: 
+        - generic [ref=e76]:
+          - generic [ref=e77]: community
+          - generic [ref=e78]: zone
+      - generic [ref=e79]: สำหรับนิสิต บุคลากร ศิษย์เก่า รวมถึงผู้สนใจทั่วไปที่ต้องการติดตามข้อมูลข่าวสาร กิจกรรมความเคลื่อนไหวต่าง ๆ ภายในมหาวิทยาลัย
+    - link "เลือกเรียนคณะไหนดี  NEWCOMER PROSPECTIVE STUDENTS สำหรับนักเรียนหรือผู้ปกครองที่สนใจหรือต้องการเรียนต่อภายในมหาวิทยาลัย ค้นหาคณะ หลักสูตรที่สนใจได้ที่นี่" [ref=e80] [cursor=pointer]:
+      - /url: /th/newcomer-home
+      - generic [ref=e81]:
+        - generic [ref=e82]:
+          - text: เลือกเรียนคณะไหนดี
+          - generic [ref=e83]: 
+        - generic [ref=e84]:
+          - generic [ref=e85]: NEWCOMER
+          - generic [ref=e86]: PROSPECTIVE STUDENTS
+      - generic [ref=e87]: สำหรับนักเรียนหรือผู้ปกครองที่สนใจหรือต้องการเรียนต่อภายในมหาวิทยาลัย ค้นหาคณะ หลักสูตรที่สนใจได้ที่นี่
+    - link "ชมผลงานและงานวิจัยเด่นๆ  partner zone สำหรับผู้สนใจในงานวิจัยต่าง ๆ ของมหาวิทยาลัย" [ref=e88] [cursor=pointer]:
+      - /url: /th/partner-home
+      - generic [ref=e89]:
+        - generic [ref=e90]:
+          - text: ชมผลงานและงานวิจัยเด่นๆ
+          - generic [ref=e91]: 
+        - generic [ref=e92]:
+          - generic [ref=e93]: partner
+          - generic [ref=e94]: zone
+      - generic [ref=e95]: สำหรับผู้สนใจในงานวิจัยต่าง ๆ ของมหาวิทยาลัย
+    - generic [ref=e96]:
+      - link "TH" [ref=e97] [cursor=pointer]:
+        - /url: https://www.ku.ac.th/th/community-home
+      - link "EN" [ref=e98] [cursor=pointer]:
+        - /url: https://www.ku.ac.th/en/community-home
+    - generic [ref=e99]:
+      - text: สงวนลิขสิทธิ์ © มหาวิทยาลัยเกษตรศาสตร์
+      - generic [ref=e100]:
+        - generic [ref=e101] [cursor=pointer]:
+          - link "":
+            - /url: https://www.facebook.com/KasetsartUniversity
+            - generic [ref=e102]: 
+        - generic [ref=e103] [cursor=pointer]:
+          - link "":
+            - /url: https://twitter.com/kasetsart_ku?s=09
+            - generic [ref=e104]: 
+        - generic [ref=e105] [cursor=pointer]:
+          - link "":
+            - /url: https://www.instagram.com/kasetsart_ku/
+            - generic [ref=e106]: 
+        - generic [ref=e107] [cursor=pointer]:
+          - link "":
+            - /url: https://www.youtube.com/channel/UC1Lx-uL4ln8JXEdTDxep7GA
+            - generic [ref=e108]: 
+        - generic [ref=e109] [cursor=pointer]:
+          - link "":
+            - /url: mailto:www@ku.ac.th
+            - generic [ref=e110]: 
