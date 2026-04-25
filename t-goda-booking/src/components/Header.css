@@ -78,6 +78,13 @@
   font-weight: 600;
   cursor: pointer;
   padding: 8px 0;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+}
+
+.header-link-button:hover {
+  color: var(--primary-blue);
 }
 
 .mobile-menu-toggle {
@@ -93,6 +100,10 @@
   cursor: pointer;
   border: none;
   transition: background-color 0.2s ease;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .btn-primary {

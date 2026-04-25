@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import './Search.css';
@@ -39,7 +40,7 @@ const flashDeals = [
     discount: '60% OFF',
     oldPrice: '$1,200',
     price: '$480',
-    image: '/mock-assets/deal-1.png',
+    image: 'https://images.unsplash.com/photo-1582719508461-905c673771fd?w=600&q=80',
   },
   {
     id: 2,
@@ -49,7 +50,7 @@ const flashDeals = [
     discount: '45% OFF',
     oldPrice: '$450',
     price: '$247',
-    image: '/mock-assets/deal-2.png',
+    image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&q=80',
   },
   {
     id: 3,
@@ -59,7 +60,7 @@ const flashDeals = [
     discount: '35% OFF',
     oldPrice: '$680',
     price: '$442',
-    image: '/mock-assets/deal-3.png',
+    image: 'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=600&q=80',
   },
 ];
 
@@ -77,7 +78,7 @@ const results = [
     price: '$284',
     badge: 'Top Choice',
     amenities: ['Free Wi-Fi', 'Pool', 'Breakfast'],
-    image: '/mock-assets/result-azure.png',
+    image: 'https://images.unsplash.com/photo-1566665797739-1674de7a421a?w=600&q=80',
   },
   {
     id: 2,
@@ -90,7 +91,7 @@ const results = [
     note: 'Free cancellation before Oct 10',
     price: '$415',
     amenities: ['Private Beach', 'Spa'],
-    image: '/mock-assets/result-lumina.png',
+    image: 'https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=600&q=80',
   },
   {
     id: 3,
@@ -103,11 +104,13 @@ const results = [
     note: 'Breakfast + Dinner deal available',
     price: '$189',
     amenities: ['Airport Shuttle', 'Gym'],
-    image: '/mock-assets/result-palms.png',
+    image: 'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=600&q=80',
   },
 ];
 
 const Search = () => {
+  const [mapOpen, setMapOpen] = useState(false);
+
   return (
     <div className="search-page">
       <Header />
@@ -173,7 +176,7 @@ const Search = () => {
               </div>
 
               <div className="map-card" aria-label="Bali map preview">
-                <button type="button" className="map-button">▥ View on Map</button>
+                <button type="button" className="map-button" onClick={() => setMapOpen(true)}>View on Map</button>
               </div>
             </aside>
 
@@ -269,6 +272,41 @@ const Search = () => {
           </div>
         </div>
       </main>
+
+      {mapOpen && (
+        <div className="map-modal-overlay" onClick={() => setMapOpen(false)}>
+          <div className="map-modal" onClick={(e) => e.stopPropagation()}>
+            <div className="map-modal-header">
+              <h3>🗺️ Properties in Bali</h3>
+              <button className="map-modal-close" onClick={() => setMapOpen(false)}>✕</button>
+            </div>
+            <div className="map-modal-content">
+              <div className="map-container">
+                <img
+                  src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=1200&q=80"
+                  alt="Bali map"
+                  className="map-image"
+                />
+                <div className="map-markers">
+                  <div className="map-marker" style={{ top: '30%', left: '45%' }}>
+                    <span className="marker-pin">📍</span>
+                    <span className="marker-price">$284</span>
+                  </div>
+                  <div className="map-marker" style={{ top: '55%', left: '60%' }}>
+                    <span className="marker-pin">📍</span>
+                    <span className="marker-price">$415</span>
+                  </div>
+                  <div className="map-marker" style={{ top: '40%', left: '75%' }}>
+                    <span className="marker-pin">📍</span>
+                    <span className="marker-price">$189</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
       <Footer />
     </div>
   );
